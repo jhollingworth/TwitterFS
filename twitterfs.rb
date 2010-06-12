@@ -1,9 +1,28 @@
-class Node
-  def initialize(id) 
+class Directory
+  def initialize(id, name)
     @id = id
-    @next_node = nil
+    @name = name
   end
-  
+
+  def add_file(name, content)
+    file = File.new(name, content)
+  end
+
+end
+
+class File   
+  attr :name,:data
+
+  def initialize(name, data)
+    @name =name
+    @data = data
+  end
+end
+
+=begin
+
+
+class Node
   def initialize(id, next_node)
     @id = id
     @next_node = next_node
@@ -12,7 +31,7 @@ end
 
 class Directory < Node
   def initialize(id, name)
-    super id
+    super(id, nil)
     @name = name
     @nodes = []
   end
@@ -20,38 +39,16 @@ end
 
 class File < Node
   def initialize(id, data)
-    super id
+     super(id, nil)
+
+     @next_node = []
+
     @data = data
   end
 end
 
 class Tweet
   attr text, annotations, id
-end
-
-
-class FS  
-  def initialize()
-    @root = []
-  end
-  
-  def root_directory()
-  end
-  
-  def create_directory()
-  end
-  
-  def create(file)
-  end
-  
-  def delete(file_id)
-  end
-  
-  def update(file_id, file)
-  end
-  
-  def flush()
-  end
 end
 
 class Twitter
@@ -70,3 +67,6 @@ class Twitter
   def get_tweet(id)
   end
 end
+
+
+=end

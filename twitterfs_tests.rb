@@ -1,12 +1,13 @@
 require 'twitterfs'
 
-fs = Fs.new
-
-describe Fs, '#create' do 
+describe Directory, '#add_file' do
   it "should create a file in twitter" do
-    root = fs.root
-    root.create("Some data")
+    root = Directory.new(1, "test")
 
-    
+    file = root.add_file("lolcat.jpg", "someContent")
+
+    file.should_not == nil
+    file.name.should ==   "lolcat.jpg"
+
   end
 end
