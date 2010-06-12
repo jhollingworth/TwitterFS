@@ -15,69 +15,19 @@ describe Directory, '#add_file' do
   end
 end
 
-class FileTweeter
-  
-  attr_writer :max_tweet_size
-  
-  def initialize(twitter)
-    @twitter = twitter
-    @max_tweet_size = 512
-  end
-  
-  def tweet_file(file)
-    tweet = Tweet.new
-    
-    puts tweet.methods
-    
-    tweet.annotation = nil
-#    tweet.annotation.data = file
-    
-    @twitter.tweet(tweet)
-  end
-end
-
-class FileAnnotation
-  attr :data, :next_node
-end 
-
-
-class MockTwitter 
-  
-  attr :tweets
-  
-  def initialize()
-    @count = 0
-    @tweets = []
-  end
-  
-  def tweet(tweet)
-    @count = @count + 1
-    tweet.id = @count
-    @tweets << tweet
-    tweet
-  end
-end
-
-
 describe FileTweeter, "#tweet_file" do
   
   before(:all) do
-    @twitter = MockTwitter.new
-    @tweeter = FileTweeter.new(@twitter)
-    @tweeter.max_tweet_size = 10
+    File.max_file_size = 10
   end
   
-  it "should split the file into multiple nodes" do 
+  it "should create a single file if total data under the max" do 
     data = "1111111110"
-    @tweeter.tweet_file(data)
-    @twitter.tweets.length.should == 1
-    tweet = tweets[0]
-    
-    tweet.id.should == 1
-    annotation = tweet.annotation 
-    annotation.data.should == data
-    annotation.next_node.should == nil
+    file = File.new(data)
+    file.next.should == nil
+    file.data.should == data
   end 
+  
 end
 
 describe Fs, '#initialize' do
@@ -126,7 +76,6 @@ describe Persister, '#add_tweet' do
 
     tweet = @persister.get_tweet(@added_id)
     tweet.content.should == "Hello"
-    tweet.
 
 
   end

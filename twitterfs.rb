@@ -41,7 +41,6 @@ class Persister
   end
 
   def add_tweet(tweet, annotation)
-
   end
 
   def get_tweet(id)
@@ -58,10 +57,6 @@ class Tweet
   def initialize()
     @annotation = nil
     @id = nil
-    @content = nil
-    
-    puts @annotation
-    
-    
+    @content = nil    
   end
 end
