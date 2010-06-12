@@ -1,42 +1,40 @@
 require 'twitterfs'
 require 'rubygems'
 require 'json'
+require 'twitterfspersistance'
+require 'rr'
 
-describe Directory, '#add_file' do
-  
-  it "should create a create a file" do
-    root = Directory.new(1, "test")
 
-    file = root.add_file("lolcat.jpg", "someContent")
-
-    file.should_not == nil
-    file.name.should ==   "lolcat.jpg"
-    root.files[0].should == file
-  end
+Spec::Runner.configure do |config|
+  config.mock_with RR::Adapters::Rspec
 end
 
-
-describe File, "#new" do
-  
-  before(:all) do
-    $max_file_size = 10
+describe Directory do
+  before(:all) do    
+    @fs = FileSystem.new nil
+    @dir = Directory.new(@fs,1)
+    
+    stub(@fs).load.returns "title;2,3;4,5" 
+    @dir.load
   end
   
-  it "should create a single file if total data under the max" do 
-    data = "1111111110"
-    file = File.new("foo", data)
-    file.name.should == "foo"
-    file.next.should == nil
-    file.data.should == data
-  end 
+  it "should load the title" do
+    @dir.title.should == "title"
+  end
   
-  it "should split a file into multiple nodes if it is greater than the max file size" do 
-    a = "1111111111"
-    b = "0000000000"
-    file = File.new("foo", a + b)
-    file.name.should == "foo"
-    file.data.should == a
-    file.next.should_not == nil
-    file.next.data.should == b
+  it "should load the directories" do
+    dirs = @dir.directories
+    
+    dirs.length.should == 2
+    dirs[0].id.should == 2
+    dirs[1].id.should == 3
+  end
+  
+  it "should load the files" do
+    files = @dir.files
+    
+    files.length.should == 2
+    files[0].id.should == 4
+    files[1].id.should == 5
   end
 end

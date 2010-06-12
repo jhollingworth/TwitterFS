@@ -19,7 +19,6 @@ class FileSystem
   end
 end
 
-
 class Persister
 
   def initialize()
