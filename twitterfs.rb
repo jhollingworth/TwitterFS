@@ -19,6 +19,37 @@ class File
   end
 end
 
+
+class Fs
+
+  attr :root
+
+  def initialize()
+    @root = Directory.new(nil, "root")
+  end
+
+end
+
+class Persister
+
+  def initialize(filename)
+    @filename = filename
+  end
+
+  def add_tweet(tweet, annotation)
+
+  end
+
+  def get_tweet(id)
+
+  end
+
+  def get_most_recent_tweet()
+
+  end
+  
+end
+
 =begin
 
 

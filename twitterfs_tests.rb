@@ -11,3 +11,21 @@ describe Directory, '#add_file' do
 
   end
 end
+
+
+describe Fs, '#initialize' do
+
+  before(:all) do
+    @fs = Fs.new
+  end
+
+  it "should have a root directory" do
+    fs.root.should_not == nil
+  end
+
+end
+
+
+describe Persister, '#initialize' do
+  
+end
