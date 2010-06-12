@@ -2,8 +2,6 @@ require 'twitterfs'
 require 'rubygems'
 require 'json'
 
-
-
 describe Directory, '#add_file' do
   
   it "should create a create a file" do
@@ -42,71 +40,4 @@ describe File, "#new" do
     file.next.data.should == b
   end
 end
-
-=begin 
-describe Fs, '#initialize' do
-
-  before(:all) do
-    @fs = Fs.new
-  end
-
-  it "should have a root directory" do
-    fs.root.should_not == nil
-  end
-
-end
-
-describe Persister, "#get_tweet" do
-
-  before(:all) do
-    @persister = Persister.new
-  end
-
-  it "should return the tweet specified" do
-
-  end
-
-end
-
-describe Persister, '#add_tweet' do
-
-  before(:all) do
-    @persister = Persister.new
-    @added_id = @persister.add_tweet("Hello", "Content")
-  end
-
-  it "should return the new tweet id" do
-    @added_id.should_not == nil
-  end
-
-  it "should add the file so it can be retrieved" do
-
-    tweet = @persister.get_tweet(@added_id)
-    tweet.should_not == nil
-
-  end
-
-  it "should add the file with correct values" do
-
-    tweet = @persister.get_tweet(@added_id)
-    tweet.content.should == "Hello"
-
-  end
-
-end
-
-
-describe Persister, "#get_most_recent_tweet" do
-
-  before(:all) do
-
-  end
-
-  it "should return the most recent tweet" do
-
-  end
-
-end
-
-=end
 
