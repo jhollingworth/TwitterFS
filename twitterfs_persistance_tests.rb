@@ -5,6 +5,11 @@ class MockPersister
     def initialize
       
     end
+
+    def get_most_recent_tweet()
+      tweet = Tweet.new(999, "", "")
+    end
+
 end
 
 describe FileSystem, '#initialize' do
@@ -17,6 +22,11 @@ describe FileSystem, '#initialize' do
   it "should have a root directory" do
     @fs.root.should_not == nil
   end
+
+  it "root directory loaded with most recent id" do
+      @fs.root.id.should == 999
+  end
+
 
 end
 

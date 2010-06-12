@@ -4,20 +4,36 @@ class FileSystem
 
   def initialize(persister)
     @persister = persister
-    @root = Directory.new(nil, "root")
+    tweet = @persister.get_most_recent_tweet()
+
+    @root = Directory.new(self, tweet.id)
   end
   
   def load(id)
-    #get text data for id's
+    
+    # Get text data for id
+    
+
   end 
   
   def write(data)
-    #writes string to nodes
+    
+    # Writes string to nodes
+
+    # Returns id
+
   end
   
   def flush()
+
+    # Bottom up recursion saving all files + directories
+
   end
 end
+
+
+
+# This will be replaced with a proper Twitter interface when we get access
 
 class Persister
 
@@ -28,10 +44,10 @@ class Persister
   def add_tweet(tweet, annotation)
     newtweet = Tweet.new(nil, tweet, annotation)
     @tweets.push(newtweet)
-    newtweet.set_id(@tweets.length-1)
+    newtweet.id = @tweets.length-1
     newtweet.id
   end
-
+  
   def get_tweet(id)
     tweet = @tweets[id]
   end
@@ -41,11 +57,12 @@ class Persister
   end
 end
 
+# This is a tweet
 class Tweet
 
   attr :annotation
-  attr_writer :id
-  attr_writer :content
+  attr_accessor  :id
+  attr_accessor  :content
 
   def initialize(id, content, annotation)
     @annotation = annotation
@@ -53,7 +70,4 @@ class Tweet
     @content = content
   end
 
-  def set_id(id)
-    @id = id
-  end
 end
