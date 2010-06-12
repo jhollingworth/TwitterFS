@@ -32,12 +32,12 @@ class Directory
   end
   
   def files()
-    load()
+    load
     @files
   end
   
   def title()
-    load()
+    load
     @title
   end
   
@@ -48,7 +48,7 @@ class Directory
   end
   
   def directories()
-    load()
+    load
     @directories
   end
 
@@ -79,14 +79,25 @@ class File
     @loaded = false
   end
 
-  def title()
-    load
-    @title
+  
+  def title=(title)
+    @title = title
+    @id = nil
+  end
+  
+  def data=(data)
+    @data = data
+    @id = nil
   end
   
   def data()
     load
     @data
+  end
+  
+  def title()
+    load
+    @title
   end
   
   def load()
@@ -99,7 +110,7 @@ class File
   end
   
   def to_s()
-    #serialize file to string
+    "#{@title};#{@data}"
   end
 end 
 
