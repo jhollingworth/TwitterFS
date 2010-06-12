@@ -56,10 +56,33 @@ class FileSystem
   end
   
   def flush()
-
     # Bottom up recursion saving all files + directories
-
+    self.flush_directory(@root)
   end
+
+  def flush_directory(dir)
+
+      if(dir.loaded)
+
+        dir.directories.each { |directory|
+          flush_directory(directory)
+        }
+
+        dir.files.each { |file|
+           flush_file(file)
+        }
+        if dir.id == nil
+          dir.id = self.write(dir.to_s)
+        end
+      end
+  end
+
+  def flush_file(file)
+      if file.id == nil
+        file.id = self.write(file.to_s)
+      end
+  end
+
 end
 
 class Persister
