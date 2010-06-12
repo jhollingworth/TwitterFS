@@ -48,5 +48,20 @@ class Persister
   end
 
   def get_most_recent_tweet()
+    
+  end
+end
+
+class Tweet
+  attr :annotation, :id, :content
+  
+  def initialize()
+    @annotation = nil
+    @id = nil
+    @content = nil
+    
+    puts @annotation
+    
+    
   end
 end
