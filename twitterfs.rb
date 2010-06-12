@@ -1,11 +1,19 @@
 class Directory
+
+  attr :id
+  attr :name
+  attr :files
+  
   def initialize(id, name)
     @id = id
     @name = name
+    @files = []
   end
 
   def add_file(name, content)
     file = File.new(name, content)
+    files << file
+    file
   end
 
 end
@@ -18,6 +26,7 @@ class File
     @data = data
   end
 end
+
 
 =begin
 
@@ -47,26 +56,5 @@ class File < Node
   end
 end
 
-class Tweet
-  attr text, annotations, id
-end
+=end 
 
-class Twitter
-  def initialize()
-    @tweets = []
-  end
-  
-  def tweet(tweet)
-    @tweets << tweet
-  end
-  
-  def get_feed(username)
-    @tweets
-  end
-  
-  def get_tweet(id)
-  end
-end
-
-
-=end
