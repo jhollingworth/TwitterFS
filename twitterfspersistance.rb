@@ -36,11 +36,19 @@ class FileSystem
   end 
   
   def write(data)
-    
+      
     # Writes string to nodes
-    data.
+    arraycount = (data.length / @tweet_size).to_i
+    last_id = ""    
+
+    for i in arraycount..0
+        substr =  data[(i * @tweet_size)..((i+1) * @tweet_size)]
+        last_id = @persister.add_tweet(last_id,
+                                { "d" => substr }.to_json ).to_s
+    end
 
     # Returns id
+    last_id.to_i
 
   end
   
@@ -51,9 +59,6 @@ class FileSystem
   end
 end
 
-
-
-# This will be replaced with a proper Twitter interface when we get access
 class Persister
 
   def initialize()

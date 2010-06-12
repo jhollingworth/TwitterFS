@@ -1,7 +1,7 @@
 require 'base64'
 
 class Directory
-  attr_writer :id
+  attr_accessor :id
   
   def initialize(fs, id)
     @fs = fs
@@ -25,7 +25,7 @@ class Directory
   end
   
   def title()
-    load
+    load()
     @title
   end
   
@@ -38,8 +38,9 @@ class Directory
   def load()
     if false == @id.nil? and false == @loaded
 
-      data = @fs.Load(@id)
-      
+      data = @fs.load(@id)
+    
+      @title = data
       
       @files = [] #load the file
       @directories = [] #load dir
@@ -85,7 +86,10 @@ class File
       
       data = @fs.Load(@id)
       
+      puts "foo" + data
       
+      
+      @title = data
       @files = [] #load the file
       @directories = [] #load dir
       
