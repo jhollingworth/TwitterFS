@@ -1,7 +1,7 @@
 require 'base64'
 
 class Directory
-  attr_accessor :id
+  attr_writer :id
   
   def initialize(fs, id)
     @fs = fs
@@ -62,7 +62,7 @@ class Directory
 end 
 
 class File
-  attr_accessor :id
+  attr_writer :id
 
   def initialize(fs, id)
     @fs = fs
