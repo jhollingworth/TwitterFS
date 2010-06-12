@@ -2,6 +2,8 @@ require 'twitterfs'
 require 'rubygems'
 require 'json'
 
+
+
 describe Directory, '#add_file' do
   
   it "should create a create a file" do
@@ -15,21 +17,33 @@ describe Directory, '#add_file' do
   end
 end
 
-describe FileTweeter, "#tweet_file" do
+
+describe File, "#new" do
   
   before(:all) do
-    File.max_file_size = 10
+    $max_file_size = 10
   end
   
   it "should create a single file if total data under the max" do 
     data = "1111111110"
-    file = File.new(data)
+    file = File.new("foo", data)
+    file.name.should == "foo"
     file.next.should == nil
     file.data.should == data
   end 
   
+  it "should split a file into multiple nodes if it is greater than the max file size" do 
+    a = "111111111"
+    b = "000000000"
+    file = File.new("foo", a + b)
+    file.name.should == "foo"
+    file.data.should == a
+    file.next.should_not == nil
+    file.next.data.should == b
+  end
 end
 
+=begin 
 describe Fs, '#initialize' do
 
   before(:all) do
@@ -72,15 +86,15 @@ describe Persister, '#add_tweet' do
 
   end
 
-   it "should add the file with correct values" do
+  it "should add the file with correct values" do
 
     tweet = @persister.get_tweet(@added_id)
     tweet.content.should == "Hello"
 
-
   end
 
 end
+
 
 describe Persister, "#get_most_recent_tweet" do
 
@@ -93,3 +107,6 @@ describe Persister, "#get_most_recent_tweet" do
   end
 
 end
+
+=end
+
