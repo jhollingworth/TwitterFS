@@ -19,9 +19,9 @@ class MockPersisterForLoad
       tweet = Tweet.new(999, "", "")
     end
 
-     def get_tweet(id)
+     def get_tweet(uid)
        tweet = nil
-       case id
+       case uid
          when 1
              tweet = Tweet.new(1, "2", "{\"d\":\"d1\"}")
          when 2
@@ -50,8 +50,8 @@ class MockPersisterForWrite
      def add_tweet(tweet, annotation)
         newtweet = Tweet.new(nil, tweet, annotation)
         @tweets.push(newtweet)
-        newtweet.id = @tweets.length-1
-        newtweet.id
+        newtweet.uid = @tweets.length-1
+        newtweet.uid
      end
 end
 
@@ -110,8 +110,8 @@ describe FileSystem, '#initialize' do
     @fs.root.should_not == nil
   end
 
-  it "root directory loaded with most recent id" do
-      @fs.root.id.should == 999
+  it "root directory loaded with most recent uid" do
+      @fs.root.uid.should == 999
   end
 
 end
@@ -122,10 +122,10 @@ describe Persister, "#get_tweet" do
     @persister = Persister.new
 
     @persister.add_tweet("tweet one", "something")
-    @requestid = @persister.add_tweet("tweet two", "something 2")
+    @requestuid = @persister.add_tweet("tweet two", "something 2")
     @persister.add_tweet("tweet three", "something 2")
 
-    @requestedtweet = @persister.get_tweet(@requestid)
+    @requestedtweet = @persister.get_tweet(@requestuid)
 
   end
 
@@ -141,23 +141,23 @@ describe Persister, '#add_tweet' do
 
   before(:all) do
     @persister = Persister.new
-    @added_id = @persister.add_tweet("Hello", "Content")
+    @added_uid = @persister.add_tweet("Hello", "Content")
   end
 
-  it "should return the new tweet id" do
-    @added_id.should_not == nil
+  it "should return the new tweet uid" do
+    @added_uid.should_not == nil
   end
 
-  it "should add the file so it can be retrieved" do
+  it "should add the Document so it can be retrieved" do
 
-    tweet = @persister.get_tweet(@added_id)
+    tweet = @persister.get_tweet(@added_uid)
     tweet.should_not == nil
 
   end
 
-  it "should add the file with correct values" do
+  it "should add the Document with correct values" do
 
-    tweet = @persister.get_tweet(@added_id)
+    tweet = @persister.get_tweet(@added_uid)
     tweet.content.should == "Hello"
     tweet.annotation.should == "Content"
 

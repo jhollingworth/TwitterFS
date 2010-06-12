@@ -3,8 +3,13 @@
   <component name="ChangeListManager" verified="true">
     <list default="true" readonly="true" id="6d6ae8ea-f7e4-47ec-afd4-fd6670cb1c38" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/integration_tests.rb" afterPath="$PROJECT_DIR$/integration_tests.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/twitterfs_tests.rb" afterPath="$PROJECT_DIR$/twitterfs_tests.rb" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test.jpg" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/twitterfs_persistance_tests.rb" afterPath="$PROJECT_DIR$/twitterfs_persistance_tests.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/twitterfs.rb" afterPath="$PROJECT_DIR$/twitterfs.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/twitterfspersistance.rb" afterPath="$PROJECT_DIR$/twitterfspersistance.rb" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/inode-detail.jpg" />
     </list>
     <ignored path="TwitterFS.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -31,7 +36,7 @@
       <file leaf-file-name="twitterfspersistance.rb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/twitterfspersistance.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="89" column="23" selection-start="1692" selection-end="1692" vertical-scroll-proportion="0.0">
+            <state line="86" column="23" selection-start="1754" selection-end="1754" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -40,7 +45,7 @@
       <file leaf-file-name="twitterfs.rb" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/twitterfs.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="20" column="42" selection-start="297" selection-end="297" vertical-scroll-proportion="0.3420523">
+            <state line="40" column="65" selection-start="647" selection-end="647" vertical-scroll-proportion="0.6841046">
               <folding />
             </state>
           </provider>
@@ -49,7 +54,7 @@
       <file leaf-file-name="integration_tests.rb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/integration_tests.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="38" column="36" selection-start="878" selection-end="878" vertical-scroll-proportion="0.0">
+            <state line="7" column="21" selection-start="136" selection-end="136" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -239,23 +244,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/integration_tests.rb">
+    <entry file="file://$PROJECT_DIR$/twitterfspersistance.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="38" column="36" selection-start="878" selection-end="878" vertical-scroll-proportion="0.0">
+        <state line="86" column="23" selection-start="1754" selection-end="1754" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/twitterfspersistance.rb">
+    <entry file="file://$PROJECT_DIR$/integration_tests.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="89" column="23" selection-start="1692" selection-end="1692" vertical-scroll-proportion="0.0">
+        <state line="7" column="21" selection-start="136" selection-end="136" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/twitterfs.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="42" selection-start="297" selection-end="297" vertical-scroll-proportion="0.3420523">
+        <state line="40" column="65" selection-start="647" selection-end="647" vertical-scroll-proportion="0.6841046">
           <folding />
         </state>
       </provider>

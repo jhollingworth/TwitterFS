@@ -6,29 +6,26 @@ class FileSystem
   attr_accessor :root
   attr_accessor :tweet_size
 
-  def initialize(persister)
+  def initialize(persister, options = {})
     @persister = persister
     @tweet_size = 500
     tweet = @persister.get_most_recent_tweet()
 
-    @root = Directory.new(self, tweet.id)
+    if(options.nil? == false and options.has_key?(:isnew))
+       @root = Directory.new self, nil
+       flush
+     else
+       @root = Directory.new(self, tweet.uid)
+    end
+      
   end
 
-
-  def self.setup(persister)
-
-      fs = FileSystem.new persister
-      fs.root = Directory.new self, nil
-      fs.flush
-
-  end
-  
-  def load(id)
+  def load(uid)
 
     completeddata = ""
     
-    # Get text data for id
-    tweet = @persister.get_tweet(id)
+    # Get text data for uid
+    tweet = @persister.get_tweet(uid)
     begin
 
       data = JSON.parse(tweet.annotation)
@@ -49,46 +46,46 @@ class FileSystem
     # Writes string to nodes
     arraycount = (data.length / @tweet_size).to_i
     i = arraycount;
-    last_id = ""    
+    last_uid = ""    
 
     begin
         substr =  data[(i * @tweet_size)..((i+1) * @tweet_size-1)]
-        last_id = @persister.add_tweet(last_id,
+        last_uid = @persister.add_tweet(last_uid,
                                 { "d" => substr }.to_json ).to_s
         
       i -= 1
     end while i >= 0
 
-    # Returns id
-    last_id.to_i
+    # Returns uid
+    last_uid.to_i
 
   end
   
   def flush()
-    # Bottom up recursion saving all files + directories
+    # Bottom up recursion saving all Documents + directories
     self.flush_directory(@root)
   end
 
   def flush_directory(dir)
 
-      if(dir.loaded or dir.id == nil)
+      if(dir.loaded or dir.uid == nil)
 
         dir.directories.each { |directory|
           flush_directory(directory)
         }
 
-        dir.files.each { |file|
-           flush_file(file)
+        dir.documents.each { |document|
+           flush_Document(document)
         }
-        if dir.id == nil
-          dir.id = self.write(dir.to_s)
+        if dir.uid == nil
+          dir.uid = self.write(dir.to_s)
         end
       end
   end
 
-  def flush_file(file)
-      if file.id == nil
-        file.id = self.write(file.to_s)
+  def flush_Document(document)
+      if document.uid == nil
+        document.uid = self.write(document.to_s)
       end
   end
 end
@@ -103,12 +100,12 @@ class Persister
   def add_tweet(tweet, annotation)
     newtweet = Tweet.new(nil, tweet, annotation)
     @tweets << newtweet
-    newtweet.id = @tweets.length-1
-    newtweet.id
+    newtweet.uid = @tweets.length-1
+    newtweet.uid
   end
   
-  def get_tweet(id)
-    tweet = @tweets[id]
+  def get_tweet(uid)
+    tweet = @tweets[uid]
   end
 
   def get_most_recent_tweet()
@@ -120,12 +117,12 @@ end
 class Tweet
 
   attr :annotation
-  attr_accessor  :id
+  attr_accessor  :uid
   attr_accessor  :content
 
-  def initialize(id, content, annotation)
+  def initialize(uid, content, annotation)
     @annotation = annotation
-    @id = id
+    @uid = uid
     @content = content
   end
 
