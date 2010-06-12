@@ -58,7 +58,6 @@ class MockTwitter
   end
 end
 
-
 describe FileTweeter, "#tweet_file" do
   
   before(:all) do
@@ -126,7 +125,7 @@ describe Persister, '#add_tweet' do
 
     tweet = @persister.get_tweet(@added_id)
     tweet.content.should == "Hello"
-    tweet.
+#    tweet.
 
 
   end
