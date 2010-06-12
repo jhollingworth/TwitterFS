@@ -71,6 +71,9 @@ class Persister
 end
 
 class Tweet
+
+  attr :annotation, :id, :content
+  
   attr :annotation
   attr_writer :id
   attr_writer :content

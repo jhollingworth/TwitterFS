@@ -30,6 +30,7 @@ describe File, "#new" do
     file.name.should == "foo"
     file.next.should == nil
     file.data.should == data
+<<<<<<< HEAD
   end 
   
   it "should split a file into multiple nodes if it is greater than the max file size" do 
@@ -40,6 +41,7 @@ describe File, "#new" do
     file.data.should == a
     file.next.should_not == nil
     file.next.data.should == b
+=======
+>>>>>>> 4762ac4c118b3074cff455008e1dba85c42bdf21
   end
 end
-
