@@ -53,5 +53,16 @@ describe "Integration"  do
     doc.title.should == 'inode-detail.jpg'
     File.open('test.jpg', 'w') {|f| f.puts doc.data }
   end
+  
+  it "this isn't even a real test" do
+  
+    data = ''
+    File.open('inode-detail.jpg', 'r').each {|l| data += l}
+    
+    debugger
+    
+    File.open('test1.jpg', 'w') {|f| f.puts data }
+    
+  end
 end
 
