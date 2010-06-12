@@ -29,7 +29,12 @@ class File
   def initialize(name, data)
     @name =name
     
-
+    if data.length > $max_file_size
+      @data = data[0..$max_file_size - 1]
+      @next = File.new(name, data[$max_file_size..data.length])
+    elsif 
+      @data = data
+    end
   end
 end
 

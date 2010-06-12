@@ -33,8 +33,8 @@ describe File, "#new" do
   end 
   
   it "should split a file into multiple nodes if it is greater than the max file size" do 
-    a = "111111111"
-    b = "000000000"
+    a = "1111111111"
+    b = "0000000000"
     file = File.new("foo", a + b)
     file.name.should == "foo"
     file.data.should == a
