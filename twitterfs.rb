@@ -37,8 +37,7 @@ end
 
 class Persister
 
-  def initialize(filename)
-    @filename = filename
+  def initialize()
   end
 
   def add_tweet(tweet, annotation)
@@ -51,34 +50,3 @@ class Persister
   def get_most_recent_tweet()
   end
 end
-
-=begin
-
-
-class Node
-  def initialize(id, next_node)
-    @id = id
-    @next_node = next_node
-  end
-end
-
-class Directory < Node
-  def initialize(id, name)
-    super(id, nil)
-    @name = name
-    @nodes = []
-  end
-end
-
-class File < Node
-  def initialize(id, data)
-     super(id, nil)
-
-     @next_node = []
-
-    @data = data
-  end
-end
-
-=end 
-
