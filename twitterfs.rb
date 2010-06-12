@@ -1,5 +1,4 @@
 require 'base64'
-require 'ruby-debug'
 
 class Directory
   attr_accessor :id
