@@ -1,35 +1,36 @@
 class IndexNode
-  attr_reader :files 
-
-  def initialize(title)    
-    @title = title
+  def initialize()    
+    @title = ""
     @files = []
     @next_node = nil 
   end
   
   def to_s
-
+    @files[0]
   end
 end
 
-class Node
-    
+class iNode
   def initialize(index, data)
     @index = index
     @data = data
+    @next_node = next_node
   end
   
   def to_s
     @data
   end
-  
 end
 
 
-index = IndexNode.new("Master")
-node = Node.new(index, "Hello world")
+index = IndexNode.new
+index.title = "Master"
+
+node = iNode.new(index, "Hello world")
 
 index.files << node
+
+puts "hello"
 
 puts index
 
