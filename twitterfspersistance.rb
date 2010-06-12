@@ -39,13 +39,16 @@ class FileSystem
       
     # Writes string to nodes
     arraycount = (data.length / @tweet_size).to_i
+    i = arraycount;
     last_id = ""    
 
-    for i in arraycount..0
-        substr =  data[(i * @tweet_size)..((i+1) * @tweet_size)]
+    begin
+        substr =  data[(i * @tweet_size)..((i+1) * @tweet_size-1)]
         last_id = @persister.add_tweet(last_id,
                                 { "d" => substr }.to_json ).to_s
-    end
+        
+      i -= 1
+    end while i >= 0
 
     # Returns id
     last_id.to_i

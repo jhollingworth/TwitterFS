@@ -92,9 +92,9 @@ describe FileSystem, '#write' do
       @persister.tweets[1].content.should == "0"
       @persister.tweets[2].content.should == "1"
 
-      @persister.tweets[0].annotation.should == "323456789"
-      @persister.tweets[1].annotation.should == "223456789,"
-      @persister.tweets[2].annotation.should == "123456789,"
+      @persister.tweets[0].annotation.should == "{\"d\":\"323456789\"}"
+      @persister.tweets[1].annotation.should == "{\"d\":\"223456789,\"}"
+      @persister.tweets[2].annotation.should == "{\"d\":\"123456789,\"}"
 
     end
 end
