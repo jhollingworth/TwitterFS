@@ -4,6 +4,7 @@
     <list default="true" readonly="true" id="1418db6d-ccf7-421a-8733-20bdf3cb9ad3" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/twitterfs_tests.rb" afterPath="$PROJECT_DIR$/twitterfs_tests.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/twitterfs.rb" afterPath="$PROJECT_DIR$/twitterfs.rb" />
     </list>
     <ignored path=".idea/workspace.xml" />
     <ignored path="TwitterFS.iws" />
@@ -27,19 +28,19 @@
   <component name="FileColors" enabled="true" enabledForTabs="true" />
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="twitterfs.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/twitterfs.rb">
+      <file leaf-file-name="twitterfs_tests.rb" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/twitterfs_tests.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="54" column="25" selection-start="611" selection-end="611" vertical-scroll-proportion="0.0">
+            <state line="157" column="31" selection-start="3058" selection-end="3058" vertical-scroll-proportion="0.8439376">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="twitterfs_tests.rb" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/twitterfs_tests.rb">
+      <file leaf-file-name="twitterfs.rb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/twitterfs.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="127" column="1" selection-start="2208" selection-end="2208" vertical-scroll-proportion="0.25090036">
+            <state line="32" column="23" selection-start="390" selection-end="390" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -214,14 +215,14 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/twitterfs.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="54" column="25" selection-start="611" selection-end="611" vertical-scroll-proportion="0.0">
+        <state line="32" column="23" selection-start="390" selection-end="390" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/twitterfs_tests.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="127" column="1" selection-start="2208" selection-end="2208" vertical-scroll-proportion="0.25090036">
+        <state line="157" column="31" selection-start="3058" selection-end="3058" vertical-scroll-proportion="0.8439376">
           <folding />
         </state>
       </provider>
