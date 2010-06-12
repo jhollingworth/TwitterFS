@@ -1,35 +1,72 @@
-class IndexNode
-  attr_reader :files 
-
-  def initialize(title)    
-    @title = title
-    @files = []
-    @next_node = nil 
+class Node
+  def initialize(id) 
+    @id = id
+    @next_node = nil
   end
   
-  def to_s
-
+  def initialize(id, next_node)
+    @id = id
+    @next_node = next_node
   end
 end
 
-class Node
-    
-  def initialize(index, data)
-    @index = index
+class Directory < Node
+  def initialize(id, name)
+    super id
+    @name = name
+    @nodes = []
+  end
+end
+
+class File < Node
+  def initialize(id, data)
+    super id
     @data = data
   end
-  
-  def to_s
-    @data
-  end
-  
+end
+
+class Tweet
+  attr text, annotations, id
 end
 
 
-index = IndexNode.new("Master")
-node = Node.new(index, "Hello world")
+class FS  
+  def initialize()
+    @root = []
+  end
+  
+  def root_directory()
+  end
+  
+  def create_directory()
+  end
+  
+  def create(file)
+  end
+  
+  def delete(file_id)
+  end
+  
+  def update(file_id, file)
+  end
+  
+  def flush()
+  end
+end
 
-index.files << node
-
-puts index
-
+class Twitter
+  def initialize()
+    @tweets = []
+  end
+  
+  def tweet(tweet)
+    @tweets << tweet
+  end
+  
+  def get_feed(username)
+    @tweets
+  end
+  
+  def get_tweet(id)
+  end
+end
