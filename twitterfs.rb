@@ -78,7 +78,13 @@ class File
     @id = id
     @loaded = false
   end
-
+  
+  def initialize(fs, title, data)
+    @id = nil
+    @fs = fs
+    @title = title
+    @data = data
+  end
   
   def title=(title)
     @title = title

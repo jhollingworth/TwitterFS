@@ -82,7 +82,6 @@ class FileSystem
         file.id = self.write(file.to_s)
       end
   end
-
 end
 
 
@@ -94,7 +93,7 @@ class Persister
 
   def add_tweet(tweet, annotation)
     newtweet = Tweet.new(nil, tweet, annotation)
-    @tweets.push(newtweet)
+    @tweets << newtweet
     newtweet.id = @tweets.length-1
     newtweet.id
   end
