@@ -148,14 +148,14 @@ describe Persister, '#add_tweet' do
     @added_uid.should_not == nil
   end
 
-  it "should add the file so it can be retrieved" do
+  it "should add the Document so it can be retrieved" do
 
     tweet = @persister.get_tweet(@added_uid)
     tweet.should_not == nil
 
   end
 
-  it "should add the file with correct values" do
+  it "should add the Document with correct values" do
 
     tweet = @persister.get_tweet(@added_uid)
     tweet.content.should == "Hello"

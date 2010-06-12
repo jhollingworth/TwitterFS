@@ -46,7 +46,7 @@ describe Directory do
   end
   
   it "should load the files" do
-    files = @dir.files
+    files = @dir.documents
     
     files.length.should == 2
     files[0].uid.should == 4
@@ -57,18 +57,18 @@ describe Directory do
     
     @dir = Directory.new 1, nil
     @dir.title = "Bibble"
-    @dir.add_files([File.new(@fs,:uid => 10), File.new(@fs, :uid => 11)])
+    @dir.add_documents([Document.new(@fs,:uid => 10), Document.new(@fs, :uid => 11)])
     @dir.add_directories([Directory.new(@fs,20), Directory.new(@fs,21)])
     
     @dir.to_s.should == "Bibble;20,21;10,11"
   end
 end
 
-describe File do 
+describe Document do 
   before(:all) do 
     @data = "ABCDEFGHIJ"
     @fs = MockFileSystem.new "title;" + @data 
-    @file = File.new(@fs, :uid => 1)
+    @file = Document.new(@fs, :uid => 1)
     @file.load
   end
 
@@ -78,7 +78,7 @@ describe File do
   end
   
   it "should serialize a file to string" do 
-    @file = File.new(@fs, :uid => 1)
+    @file = Document.new(@fs, :uid => 1)
     @file.title = "Babble"
     @file.data = "ZXCVSKSK"
     @file.to_s.should == "#{@file.title};#{@file.data}"

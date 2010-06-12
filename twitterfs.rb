@@ -1,5 +1,6 @@
 require 'base64'
 require 'ruby-debug'
+require 'pathname'
 
 class Directory
   attr_accessor :uid
@@ -9,12 +10,12 @@ class Directory
     @fs = fs
     @uid = uid
     @loaded = false
-    @files = []
+    @documents = []
     @directories = []
   end
   
-  def add_file(file)
-    @files << file  
+  def add_document(document)
+    @documents << document  
     @uid = nil
   end
   
@@ -23,17 +24,17 @@ class Directory
     @uid = nil
   end
   
-  def add_files(files)
-    files.each { |f| add_file(f)}
+  def add_documents(documents)
+    documents.each { |f| add_document(f)}
   end
   
   def add_directories(directories)
     directories.each { |d| add_directory(d)}
   end
   
-  def files()
+  def documents()
     load
-    @files
+    @documents
   end
   
   def title()
@@ -59,18 +60,18 @@ class Directory
       data = @fs.load(@uid).split(/;/)
       
       @title = data[0]
-      @files = data[2].split(/,/).collect {|i| File.new(@fs, :uid => i.to_i) }
+      @documents = data[2].split(/,/).collect {|i| Document.new(@fs, :uid => i.to_i) }
       @directories = data[1].split(/,/).collect{|i| Directory.new(@fs, i.to_i)}
       @loaded = true
     end
   end
   
   def to_s()    
-    "#{@title};#{@directories.collect {|d| d.uid.to_s + ','}.to_s.chop};#{@files.collect {|f| f.uid.to_s + ','}.to_s.chop}"
+    "#{@title};#{@directories.collect {|d| d.uid.to_s + ','}.to_s.chop};#{@documents.collect {|f| f.uid.to_s + ','}.to_s.chop}"
   end 
 end 
 
-class File
+class Document
   attr_accessor :uid
   attr_reader :loaded 
   
@@ -80,6 +81,15 @@ class File
     @title = options.has_key?(:title) ? options[:title] : nil
     @data = options.has_key?(:data) ? options[:data] : nil
     @loaded = false
+  end
+  
+  def Document.from_file_path(fs, document_path)
+    data = ''
+    File.open(document_path, 'r').each {|l| data += l}
+    Document.new(fs, 
+      :title => Pathname.new(document_path).basename,
+      :data => data
+    )
   end
   
   def title=(title)

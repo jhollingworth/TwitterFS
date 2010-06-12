@@ -62,7 +62,7 @@ class FileSystem
   end
   
   def flush()
-    # Bottom up recursion saving all files + directories
+    # Bottom up recursion saving all Documents + directories
     self.flush_directory(@root)
   end
 
@@ -74,8 +74,8 @@ class FileSystem
           flush_directory(directory)
         }
 
-        dir.files.each { |file|
-           flush_file(file)
+        dir.documents.each { |document|
+           flush_Document(document)
         }
         if dir.uid == nil
           dir.uid = self.write(dir.to_s)
@@ -83,9 +83,9 @@ class FileSystem
       end
   end
 
-  def flush_file(file)
-      if file.uid == nil
-        file.uid = self.write(file.to_s)
+  def flush_Document(document)
+      if document.uid == nil
+        document.uid = self.write(document.to_s)
       end
   end
 end
