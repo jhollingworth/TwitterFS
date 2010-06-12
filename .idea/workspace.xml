@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ChangeListManager" verified="true">
     <list default="true" readonly="true" id="6d6ae8ea-f7e4-47ec-afd4-fd6670cb1c38" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/twitterfs_tests.rb" afterPath="$PROJECT_DIR$/twitterfs_tests.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/twitterfs.rb" afterPath="$PROJECT_DIR$/twitterfs.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.swp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/twitterfs_persistance_tests.rb" afterPath="$PROJECT_DIR$/twitterfs_persistance_tests.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/twitterfspersistance.rb" afterPath="$PROJECT_DIR$/twitterfspersistance.rb" />
     </list>
     <ignored path="TwitterFS.iws" />
@@ -33,7 +31,7 @@
       <file leaf-file-name="twitterfspersistance.rb" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/twitterfspersistance.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="37" column="11" selection-start="658" selection-end="663" vertical-scroll-proportion="0.9440628">
+            <state line="62" column="28" selection-start="1158" selection-end="1158" vertical-scroll-proportion="-0.09715407">
               <folding />
             </state>
           </provider>
@@ -51,7 +49,7 @@
       <file leaf-file-name="twitterfs_persistance_tests.rb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/twitterfs_persistance_tests.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="90" column="76" selection-start="1796" selection-end="1796" vertical-scroll-proportion="-0.88">
+            <state line="93" column="12" selection-start="1895" selection-end="1895" vertical-scroll-proportion="-21.28">
               <folding />
             </state>
           </provider>
@@ -68,9 +66,9 @@
     <option name="changedFiles">
       <list>
         <option value="$PROJECT_DIR$/twitterfs_tests.rb" />
-        <option value="$PROJECT_DIR$/twitterfspersistance.rb" />
-        <option value="$PROJECT_DIR$/twitterfs_persistance_tests.rb" />
         <option value="$PROJECT_DIR$/twitterfs.rb" />
+        <option value="$PROJECT_DIR$/twitterfs_persistance_tests.rb" />
+        <option value="$PROJECT_DIR$/twitterfspersistance.rb" />
       </list>
     </option>
   </component>
@@ -233,13 +231,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/twitterfs_persistance_tests.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="90" column="76" selection-start="1796" selection-end="1796" vertical-scroll-proportion="-0.88">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/twitterfs.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="45" column="44" selection-start="576" selection-end="576" vertical-scroll-proportion="0.0">
@@ -247,9 +238,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/twitterfs_persistance_tests.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="93" column="12" selection-start="1895" selection-end="1895" vertical-scroll-proportion="-21.28">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/twitterfspersistance.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="37" column="11" selection-start="658" selection-end="663" vertical-scroll-proportion="0.9440628">
+        <state line="62" column="28" selection-start="1158" selection-end="1158" vertical-scroll-proportion="-0.09715407">
           <folding />
         </state>
       </provider>
