@@ -3,7 +3,7 @@ require 'json'
 
 class FileSystem
 
-  attr :root
+  attr_accessor :root
   attr_accessor :tweet_size
 
   def initialize(persister)
@@ -12,6 +12,15 @@ class FileSystem
     tweet = @persister.get_most_recent_tweet()
 
     @root = Directory.new(self, tweet.id)
+  end
+
+
+  def self.setup(persister)
+
+      fs = FileSystem.new persister
+      fs.root = Directory.new self, nil
+      fs.flush
+
   end
   
   def load(id)
@@ -62,7 +71,7 @@ class FileSystem
 
   def flush_directory(dir)
 
-      if(dir.loaded)
+      if(dir.loaded or dir.id == nil)
 
         dir.directories.each { |directory|
           flush_directory(directory)

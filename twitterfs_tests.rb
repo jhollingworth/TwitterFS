@@ -25,6 +25,7 @@ class MockFileSystem
   end
 end
 
+
 describe Directory do
   before(:all) do    
     @fs = MockFileSystem.new "title;2,3;4,5" 

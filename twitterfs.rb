@@ -2,6 +2,7 @@ require 'base64'
 
 class Directory
   attr_accessor :id
+  attr_accessor :loaded
   
   def initialize(fs, id)
     @fs = fs
