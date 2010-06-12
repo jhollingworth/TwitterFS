@@ -5,6 +5,7 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/twitterfs_persistance_tests.rb" afterPath="$PROJECT_DIR$/twitterfs_persistance_tests.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/twitterfs.rb" afterPath="$PROJECT_DIR$/twitterfs.rb" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/twitterfspersistance.rb" />
     </list>
     <ignored path=".idea/workspace.xml" />
     <ignored path="TwitterFS.iws" />
@@ -28,19 +29,28 @@
   <component name="FileColors" enabled="true" enabledForTabs="true" />
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="twitterfs_persistance_tests.rb" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="twitterfs_persistance_tests.rb" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/twitterfs_persistance_tests.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="23" column="155" selection-start="352" selection-end="352" vertical-scroll-proportion="0.0">
+            <state line="6" column="28" selection-start="105" selection-end="105" vertical-scroll-proportion="0.11776251">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="twitterfs.rb" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="twitterfs.rb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/twitterfs.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="73" column="27" selection-start="1010" selection-end="1010" vertical-scroll-proportion="0.71638864">
+            <state line="35" column="0" selection-start="393" selection-end="393" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="twitterfspersistance.rb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/twitterfspersistance.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="19" selection-start="19" selection-end="19" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -49,7 +59,7 @@
       <file leaf-file-name="twitterfs_tests.rb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/twitterfs_tests.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="4" column="2" selection-start="55" selection-end="55" vertical-scroll-proportion="0.0">
+            <state line="0" column="0" selection-start="0" selection-end="19" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -57,12 +67,18 @@
       </file>
     </leaf>
   </component>
+  <component name="FindManager">
+    <FindUsagesManager>
+      <setting name="OPEN_NEW_TAB" value="false" />
+    </FindUsagesManager>
+  </component>
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
         <option value="$PROJECT_DIR$/twitterfs_tests.rb" />
-        <option value="$PROJECT_DIR$/twitterfs_persistance_tests.rb" />
         <option value="$PROJECT_DIR$/twitterfs.rb" />
+        <option value="$PROJECT_DIR$/twitterfspersistance.rb" />
+        <option value="$PROJECT_DIR$/twitterfs_persistance_tests.rb" />
       </list>
     </option>
   </component>
@@ -117,6 +133,24 @@
     </panes>
   </component>
   <component name="RunManager">
+    <configuration default="true" type="TestUnitRunConfigurationType" factoryName="Test::Unit/Shoulda">
+      <predefined_log_file id="RUBY_TESTUNIT" enabled="true" />
+      <module name="" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="RUBY_ARGS" VALUE="-e STDOUT.sync=true;STDERR.sync=true;load($0=ARGV.shift)" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="WORK DIR" VALUE="" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="SHOULD_USE_SDK" VALUE="false" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="ALTERN_SDK_NAME" VALUE="" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="myPassParentEnvs" VALUE="true" />
+      <envs />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TESTS_FOLDER_PATH" VALUE="" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_SCRIPT_PATH" VALUE="" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_CLASS_NAME" VALUE="" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_FILE_MASK" VALUE="" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_METHOD_NAME" VALUE="" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_TEST_TYPE" VALUE="TEST_SCRIPT" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="INHERITANCE_CHECK_DISABLED" VALUE="false" />
+      <method />
+    </configuration>
     <list size="0" />
   </component>
   <component name="ShelveChangesManager" show_recycled="false" />
@@ -188,23 +222,30 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/twitterfs_persistance_tests.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="155" selection-start="352" selection-end="352" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/twitterfs_tests.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="2" selection-start="55" selection-end="55" vertical-scroll-proportion="0.0">
+        <state line="0" column="0" selection-start="0" selection-end="19" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/twitterfs.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="73" column="27" selection-start="1010" selection-end="1010" vertical-scroll-proportion="0.71638864">
+        <state line="35" column="0" selection-start="393" selection-end="393" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/twitterfspersistance.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="19" selection-start="19" selection-end="19" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/twitterfs_persistance_tests.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="28" selection-start="105" selection-end="105" vertical-scroll-proportion="0.11776251">
           <folding />
         </state>
       </provider>
