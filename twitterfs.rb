@@ -1,3 +1,5 @@
+require 'base64'
+
 class Directory
 
   attr :id
@@ -19,8 +21,11 @@ class Directory
 end
 
 class File   
-  attr :name,:data
-
+  attr :name
+  attr :data
+  attr :name
+  attr :next
+    
   def initialize(name, data)
     @name =name
     @data = data
@@ -60,8 +65,15 @@ class Persister
 end
 
 class Tweet
+<<<<<<< HEAD
   attr :annotation, :id, :content
   
+=======
+  attr :annotation
+  attr_writer :id
+  attr_writer :content
+
+>>>>>>> a8e42294df0896c26930d1af4e2bd40843bfe702
   def initialize(id, content, annotation)
     @annotation = annotation
     @id = id
