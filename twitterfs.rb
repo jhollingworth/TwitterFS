@@ -1,27 +1,26 @@
 require 'base64'
+require 'ruby-debug'
 
 class Directory
-  attr_accessor :id
+  attr_accessor :uid
   attr_accessor :loaded
   
-  def initialize(fs, id)
+  def initialize(fs, uid)
     @fs = fs
-    @id = id
+    @uid = uid
     @loaded = false
     @files = []
     @directories = []
   end
   
   def add_file(file)
-    load
     @files << file  
-    @id = nil
+    @uid = nil
   end
   
   def add_directory(dir)
-    load
     @directories << dir
-    @id = nil
+    @uid = nil
   end
   
   def add_files(files)
@@ -45,7 +44,7 @@ class Directory
   def title=(title)
     load
     @title = title
-    @id = nil
+    @uid = nil
   end
   
   def directories()
@@ -54,47 +53,43 @@ class Directory
   end
 
   def load()
-    if false == @id.nil? and false == @loaded
-
-      data = @fs.load(@id).split(/;/)
+    
+    if false == @uid.nil? and false == @loaded
+      
+      data = @fs.load(@uid).split(/;/)
       
       @title = data[0]
-      @files = data[2].split(/,/).collect {|i| File.new(@fs,i.to_i) }
+      @files = data[2].split(/,/).collect {|i| File.new(@fs, :uid => i.to_i) }
       @directories = data[1].split(/,/).collect{|i| Directory.new(@fs, i.to_i)}
       @loaded = true
     end
   end
   
   def to_s()    
-    "#{@title};#{@directories.collect {|d| d.id.to_s + ','}.to_s.chop};#{@files.collect {|f| f.id.to_s + ','}.to_s.chop}"
+    "#{@title};#{@directories.collect {|d| d.uid.to_s + ','}.to_s.chop};#{@files.collect {|f| f.uid.to_s + ','}.to_s.chop}"
   end 
 end 
 
 class File
-  attr_reader :id
+  attr_accessor :uid
   attr_reader :loaded 
   
-  def initialize(fs, id)
+  def initialize(fs, options={})
     @fs = fs
-    @id = id
+    @uid = options.has_key?(:uid) ? options[:uid] : nil
+    @title = options.has_key?(:title) ? options[:title] : nil
+    @data = options.has_key?(:data) ? options[:data] : nil
     @loaded = false
-  end
-  
-  def initialize(fs, title, data)
-    @id = nil
-    @fs = fs
-    @title = title
-    @data = data
   end
   
   def title=(title)
     @title = title
-    @id = nil
+    @uid = nil
   end
   
   def data=(data)
     @data = data
-    @id = nil
+    @uid = nil
   end
   
   def data()
@@ -108,8 +103,8 @@ class File
   end
   
   def load()
-    if false == @id.nil? and false == @loaded
-      data = @fs.load(@id).split(/;/)
+    if false == @uid.nil? and false == @loaded
+      data = @fs.load(@uid).split(/;/)
       
       @title = data[0]
       @data = data[1]

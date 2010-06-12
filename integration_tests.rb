@@ -2,6 +2,7 @@ require 'twitterfs'
 require 'rubygems'
 require 'json'
 require 'twitterfspersistance'
+require 'ruby-debug'
 
 describe "Integration"  do 
   
@@ -9,21 +10,20 @@ describe "Integration"  do
     
     persister = Persister.new
 
-    FileSystem.setup(persister)
-
-    fs = FileSystem.new persister
+    fs = FileSystem.new persister, :isnew => true
     root = fs.root
     
-    filea = File.new(fs, "File A", "Some Data (a)")
-    fileb = File.new(fs, "File B", "Some other data (b)")
+    filea = File.new(fs, :title => "File A", :data =>  "Some Data (a)")
+    fileb = File.new(fs, :title => "File B", :data => "Some other data (b)")
     
     root.add_files([filea, fileb])
     
     dir = Directory.new(fs, nil)
-    filec = File.new(fs, "File C", "Some lovely data (c)")
+    filec = File.new(fs, :title => "File C", :data => "Some lovely data (c)")
     dir.add_file(filec)
     
     root.add_directory(dir)
+    
     
     fs.flush()
     
@@ -33,10 +33,6 @@ describe "Integration"  do
     fs2.root.directories.length.should == 1
     fs2.root.directories[0].files.length == 1
     fs2.root.directories[0].directories.length == 0
-    
-    
-    
-    
   end
   
 end
