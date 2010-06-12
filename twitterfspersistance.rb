@@ -1,5 +1,3 @@
-require 'twitterfs'
-
 class FileSystem
 
   attr :root
@@ -8,7 +6,19 @@ class FileSystem
     @persister = persister
     @root = Directory.new(nil, "root")
   end
+  
+  def load(id)
+    #get text data for id's
+  end 
+  
+  def write(data)
+    #writes string to nodes
+  end
+  
+  def flush()
+  end
 end
+
 
 class Persister
 
@@ -33,8 +43,6 @@ class Persister
 end
 
 class Tweet
-
-  attr :annotation, :id, :content
 
   attr :annotation
   attr_writer :id

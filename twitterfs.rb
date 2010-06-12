@@ -1,40 +1,103 @@
 require 'base64'
 
 class Directory
-
-  attr :id
-  attr :name
-  attr :files
+  attr_writer :id
   
-  def initialize(id, name)
+  def initialize(fs, id)
+    @fs = fs
     @id = id
-    @name = name
-    @files = []
+    @loaded = false
+  end
+  
+  def add_file(file)
+    load
+    @id = nil
+  end
+  
+  def add_directory(dir)
+    load
+    @id = nil
+  end
+  
+  def files()
+    load
+    @files
+  end
+  
+  def title()
+    load
+    @title
+  end
+  
+  
+  def directories()
+    load
+    @directories
   end
 
-  def add_file(name, content)
-    file = File.new(name, content)
-    files << file
-    file
-  end
+  def load()
+    if false == @id.nil? and false == @loaded
 
-end
-
-class File   
-  attr :name
-  attr :data
-  attr :name
-  attr :next
-    
-  def initialize(name, data)
-    @name =name
-    
-    if data.length > $max_file_size
-      @data = data[0..$max_file_size - 1]
-      @next = File.new(name, data[$max_file_size..data.length])
-    elsif 
-      @data = data
+      data = @fs.Load(@id)
+      
+      
+      @files = [] #load the file
+      @directories = [] #load dir
+      
+      #deserialize
+      #foreach(var node in data)
+        #if node.type == "Directory"
+          #@directories << Directory.new(@fs, node.id)
+        #elsif node.type == "File"
+          #@files << File.new(@fs, node.id)
+      
+      @loaded = true
     end
   end
-end
+  
+  def to_s()
+    #serialize dir to string
+  end 
+
+end 
+
+class File
+  attr_writer :id
+
+  def initialize(fs, id)
+    @fs = fs
+    @id = id
+    @loaded = false
+  end
+
+  def title()
+    load
+    @title
+  end
+
+  def data()
+    load
+    @data
+  end
+  
+  def load()
+    if false == @id.nil? and false == @loaded
+      
+      data = @fs.Load(@id)
+      
+      
+      @files = [] #load the file
+      @directories = [] #load dir
+      
+      #deserialize
+      #foreach(var node in data)
+    end
+  end
+  
+  def to_s()
+    #serialize file to string
+  end
+end 
+
+
 
