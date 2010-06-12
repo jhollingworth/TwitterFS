@@ -1,26 +1,54 @@
+require 'rubygems'
+require 'json'
+
 class FileSystem
 
   attr :root
+  attr_accessor :tweet_size
 
   def initialize(persister)
     @persister = persister
+    @tweet_size = 500
     tweet = @persister.get_most_recent_tweet()
 
     @root = Directory.new(self, tweet.id)
   end
   
   def load(id)
+
+    completeddata = ""
     
     # Get text data for id
-    
+    tweet = @persister.get_tweet(id)
+    begin
 
+      data = JSON.parse(tweet.annotation)
+      completeddata += data["d"]
+
+      if(tweet.content != "")
+         tweet = @persister.get_tweet(tweet.content.to_i)
+      else
+        tweet = nil
+      end
+    end while tweet != nil 
+
+    completeddata
   end 
   
   def write(data)
-    
+      
     # Writes string to nodes
+    arraycount = (data.length / @tweet_size).to_i
+    last_id = ""    
+
+    for i in arraycount..0
+        substr =  data[(i * @tweet_size)..((i+1) * @tweet_size)]
+        last_id = @persister.add_tweet(last_id,
+                                { "d" => substr }.to_json ).to_s
+    end
 
     # Returns id
+    last_id.to_i
 
   end
   
@@ -31,9 +59,6 @@ class FileSystem
   end
 end
 
-
-
-# This will be replaced with a proper Twitter interface when we get access
 
 class Persister
 

@@ -71,8 +71,9 @@ class Directory
 end 
 
 class File
-  attr_accessor :id
-
+  attr_reader :id
+  attr_reader :loaded 
+  
   def initialize(fs, id)
     @fs = fs
     @id = id
@@ -83,7 +84,7 @@ class File
     load
     @title
   end
-
+  
   def data()
     load
     @data
@@ -91,17 +92,10 @@ class File
   
   def load()
     if false == @id.nil? and false == @loaded
-      data = @fs.Load(@id)
+      data = @fs.load(@id).split(/;/)
       
-      puts "foo" + data
-      
-      
-      @title = data
-      @files = [] #load the file
-      @directories = [] #load dir
-      
-      #deserialize
-      #foreach(var node in data)
+      @title = data[0]
+      @data = data[1]
     end
   end
   

@@ -9,10 +9,25 @@ Spec::Runner.configure do |config|
   config.mock_with RR::Adapters::Rspec
 end
 
+class MockPersister 
+  def get_most_recent_tweet() end
+  
+  def get_tweet(id) end
+end
+
+class MockFileSystem
+  def initialize(data)
+    @data = data
+  end
+  
+  def load(id)
+    @data
+  end
+end
+
 describe Directory do
   before(:all) do    
-    @fs = FileSystem.new MockPersister.new
-    stub(@fs).load.returns "title;2,3;4,5" 
+    @fs = MockFileSystem.new "title;2,3;4,5" 
     @dir = Directory.new(@fs,1)
     @dir.load
   end
@@ -51,9 +66,14 @@ end
 
 describe File do 
   before(:all) do 
-    @fs = FileSystem.new MockPersister.new
-    stub(@fs).load.returns "title;2,3;4,5" 
+    @data = "ABCDEFGHIJ"
+    @fs = MockFileSystem.new "title;" + @data 
     @file = File.new(@fs,1)
     @file.load
+  end
+
+  it "should load the directory from fs" do
+    @file.title.should == "title"
+    @file.data.should == data
   end
 end

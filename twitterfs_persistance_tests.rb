@@ -1,7 +1,7 @@
 require 'twitterfs'
 require 'twitterfspersistance'
 
-class MockPersister
+class MockPersisterForInitialize
     def initialize
       
     end
@@ -9,13 +9,100 @@ class MockPersister
     def get_most_recent_tweet()
       tweet = Tweet.new(999, "", "")
     end
+end
 
+class MockPersisterForLoad
+     def initialize
+     end
+
+     def get_most_recent_tweet()
+      tweet = Tweet.new(999, "", "")
+    end
+
+     def get_tweet(id)
+       tweet = nil
+       case id
+         when 1
+             tweet = Tweet.new(1, "2", "{\"d\":\"d1\"}")
+         when 2
+             tweet = Tweet.new(2, "3", "{\"d\":\"d2\"}")
+         when 3
+              tweet = Tweet.new(3,"4", "{\"d\":\"d3\"}")
+         when 4
+              tweet = Tweet.new(4, "", "{\"d\":\"d4\"}")
+       end
+       tweet
+     end
+end
+
+class MockPersisterForWrite
+
+     attr_accessor :tweets
+
+     def initialize
+       @tweets = Array.new
+     end
+
+     def get_most_recent_tweet()
+      tweet = Tweet.new(999, "", "")
+     end
+
+     def add_tweet(tweet, annotation)
+        newtweet = Tweet.new(nil, tweet, annotation)
+        @tweets.push(newtweet)
+        newtweet.id = @tweets.length-1
+        newtweet.id
+     end
+end
+
+describe FileSystem, '#load' do
+
+  before(:all) do
+    @persister = MockPersisterForLoad.new
+    @fs = FileSystem.new(@persister)
+
+    @data = @fs.load(1)
+  end
+
+  it "should load all the data for that node" do
+
+    @data.should == "d1d2d3d4"
+
+  end
+end
+
+describe FileSystem, '#write' do
+
+    before(:all) do
+
+      @persister = MockPersisterForWrite.new
+      @fs = FileSystem.new(@persister)
+      @fs.tweet_size = 10
+
+      @fs.write("123456789,223456789,323456789")
+    end
+
+    it "should split content into multiple tweets" do
+      @persister.tweets.length.should == 3
+    end
+
+    it "should create back referenced tweets" do
+
+      @persister.tweets[0].content.should == ""
+      @persister.tweets[1].content.should == "0"
+      @persister.tweets[2].content.should == "1"
+
+      @persister.tweets[0].annotation.should == "323456789"
+      @persister.tweets[1].annotation.should == "223456789,"
+      @persister.tweets[2].annotation.should == "123456789,"
+
+    end
 end
 
 describe FileSystem, '#initialize' do
 
   before(:all) do
-    @persister = MockPersister.new
+    @persister = MockPersisterForInitialize.new
     @fs = FileSystem.new(@persister)
   end
 
@@ -26,7 +113,6 @@ describe FileSystem, '#initialize' do
   it "root directory loaded with most recent id" do
       @fs.root.id.should == 999
   end
-
 
 end
 
