@@ -79,14 +79,22 @@ describe FileTweeter, "#tweet_file" do
   end 
 end
 
-describe Fs, '#initialize' do
+
+class MockPersister
+    def initialize
+      
+    end
+end
+
+describe FileSystem, '#initialize' do
 
   before(:all) do
-    @fs = Fs.new
+    @persister = MockPersister.new
+    @fs = FileSystem.new(@persister)
   end
 
   it "should have a root directory" do
-    fs.root.should_not == nil
+    @fs.root.should_not == nil
   end
 
 end

@@ -27,10 +27,12 @@ class File
   end
 end
 
-class Fs
+class FileSystem
+  
   attr :root
 
-  def initialize()
+  def initialize(persister)
+    @persister = persister
     @root = Directory.new(nil, "root")
   end
 end
