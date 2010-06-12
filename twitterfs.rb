@@ -54,7 +54,7 @@ class Directory
   end
 
   def load()
-    if false == @id.nil? and false == @loaded
+    if false != @id.nil? and false == @loaded
 
       data = @fs.load(@id).split(/;/)
       

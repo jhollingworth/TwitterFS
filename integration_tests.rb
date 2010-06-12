@@ -6,7 +6,7 @@ require 'twitterfspersistance'
 describe "Integration"  do 
   
   it "should be able to persist data with a different file system" do
-    
+
     persister = Persister.new
 
     FileSystem.setup(persister)
