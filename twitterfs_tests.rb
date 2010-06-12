@@ -63,7 +63,6 @@ describe Directory do
   end
 end
 
-
 describe File do 
   before(:all) do 
     @data = "ABCDEFGHIJ"
@@ -74,6 +73,13 @@ describe File do
 
   it "should load the directory from fs" do
     @file.title.should == "title"
-    @file.data.should == data
+    @file.data.should == @data
+  end
+  
+  it "should serialize a file to string" do 
+    @file = File.new(@fs,1)
+    @file.title = "Babble"
+    @file.data = "ZXCVSKSK"
+    @file.to_s.should == "#{@file.title};#{@file.data}"
   end
 end
