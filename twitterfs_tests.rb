@@ -19,7 +19,7 @@ class MockFileSystem
   def initialize(data)
     @data = data
   end
-  
+   
   def load(uid)
     @data
   end

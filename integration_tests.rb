@@ -5,9 +5,6 @@ require 'twitterfspersistance'
 require 'Base64'
 require 'watcher'
 
-
-$root = 'fs/'
-
 describe "Integration"  do 
 
   it "should be able to persist data with a different Document system" do
@@ -61,29 +58,24 @@ describe "Integration"  do
     File.open('test.jpg', 'wb') {|f| f.write(doc.data) }
 
   end
-  
-  it "this isn't even a real test" do
-
-    data = nil
-    File.open('inode-detail.jpg', 'rb') { |f| data = f.read()}
-
-
-    File.open('test1.jpg', 'wb') {|f| f.write(data)
-    f.flush()}
-
-   
-  end
 
   it "should be able to watch for new files beeing created" do
 
     data = nil
-    title = '123456.jpg'
-    File.open('inode-detail.jpg', 'rb') { |f| data = f.read()}
-    File.open('fs/' + title, 'wb') {|f| f.write(data) }
 
     persister = Persister.new
     fs = FileSystem.new persister, :isnew => true
-
+    root = fs.root
+    root.add_document(Document.from_file_path(fs, 'inode-detail.jpg'))
+    
+    dir = Directory.new(fs, nil)
+    dir.title = 'foo'
+    root.add_directory(dir)
+    
+    dir.add_document(Document.from_file_path(fs, 'inode-detail.jpg'))
+    
+    root.flush nil
+    
   end
   
 end

@@ -1,0 +1,14 @@
+- GigJunkie
+	- Popular artists, events
+	- Events nearby
+- Spotify 
+	- Find artist, band 
+- Google buzz 
+	- feeds of content
+- Twitter api 
+	- annotations
+- Digg, Reddit
+- PostRank
+- Google feed api
+
+Game, view of data, something useful

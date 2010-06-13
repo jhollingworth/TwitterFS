@@ -1,6 +1,7 @@
 require 'base64'
 require 'ruby-debug'
 require 'pathname'
+require 'zlib'
 
 class Directory
   attr_accessor :uid
@@ -44,6 +45,7 @@ class Directory
   
   def title=(title)
     load
+    
     @title = title
     @uid = nil
   end
@@ -71,12 +73,29 @@ class Directory
     "#{@title};#{@directories.collect {|d| d.uid.to_s + ','}.to_s.chop};#{@documents.collect {|f| f.uid.to_s + ','}.to_s.chop}"
   end 
   
-  def flush(root)
-    path = root.nil? ? $root : root + '/' + title
+  def flush(root)  
+    if root.nil? or root ==''    
+      root = 'fs/' 
+    end
+    path = root + '/' + @title
     
     if false == (File.directory? path)
       Dir.mkdir(path)
     end      
+    
+    
+    Dir.foreach(path) do |f|  
+      if f[0] != 46 
+        begin 
+          docs = @documents.select { |d| File.basename(d.title) == f }
+          if docs.length == 0
+            File.delete(path + '/' + f)
+          end
+        rescue
+          puts "failed to delete somehting"
+        end
+      end
+    end
     
     @documents.each { |d| d.flush(path) }
     @directories.each { |d| d.flush(path) }
@@ -126,8 +145,6 @@ class Document
   
   def load()
     if false == @uid.nil? and false == @loaded
-
-      
       # Google this to find out the better way
       # Tut tut hollingworth...
       rawdata =  @fs.load(@uid)
@@ -139,6 +156,10 @@ class Document
   end
   
   def flush(path)
+    path += ('/' + title)
+    
+    File.open(path, 'w') {|f| f.write(data) }
+    
   end
   
   def to_s()

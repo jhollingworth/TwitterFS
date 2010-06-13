@@ -15,11 +15,44 @@ class FileSystem
 
     if(options.nil? == false and options.has_key?(:isnew))
        @root = Directory.new self, nil
+       @root.title = ''
        flush
      else
        @root = Directory.new(self, tweet.uid)
+       @root.title = ''
+    end 
+  end
+  
+  def add_file(path)
+    path = path[(path.index('fs') + 3)..path.length]
+    
+    puts "Path to file is #{path}"
+    
+    nodes = path.split(/\//)
+    dir = @root
+    
+    dir.uid = nil
+    puts "Starting at #{dir.title}"
+    
+    i = 0
+    for n in nodes
+      if (i + 1) == nodes.length
+
+        d = Document.from_file_path self, path
+        dir.add_document(d)
+        
+        puts "Create doc #{d.title} in #{dir.title}"
+      elsif n != 'fs'
+        new_dir = Directory.new self, nil
+        new_dir.title = n
+        
+        puts "Creating new dir #{n} in #{dir.title}"
+        
+        dir.add_directory new_dir
+        dir = new_dir
+      end
+      i += 1
     end
-      
   end
 
   def load(uid)
