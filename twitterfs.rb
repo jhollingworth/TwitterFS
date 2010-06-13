@@ -57,7 +57,7 @@ class Directory
 
     if false == @uid.nil? and false == @loaded
       
-      debugger
+      
       data = @fs.load(@uid).split(/;/)
 
       @title = data[0]
@@ -72,9 +72,9 @@ class Directory
   end 
   
   def flush(root)
-    path = File.directory? root.nil? $root : root + '/' + title
+    path = root.nil? ? $root : root + '/' + title
     
-    if false == File.directory? path
+    if false == (File.directory? path)
       Dir.mkdir(path)
     end      
     
@@ -127,7 +127,7 @@ class Document
   def load()
     if false == @uid.nil? and false == @loaded
 
-      debugger
+      
       # Google this to find out the better way
       # Tut tut hollingworth...
       rawdata =  @fs.load(@uid)

@@ -2,7 +2,8 @@ require 'rubygems'
 require 'directory_watcher'
 
 
-class Watcher
+=begin
+class Watcher < File
   def initialize(fs)
     @fs = fs
     @dir_watcher = DirectoryWatcher.new './fs'
@@ -33,6 +34,6 @@ Thread.new {
   end
 }
 gets  
-dw.stop
 
 
+=end
