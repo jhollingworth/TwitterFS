@@ -136,5 +136,4 @@ class Tweet
     @uid = uid
     @content = content
   end
-
 end

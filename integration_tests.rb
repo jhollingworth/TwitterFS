@@ -3,10 +3,14 @@ require 'rubygems'
 require 'json'
 require 'twitterfspersistance'
 require 'Base64'
+require 'watcher'
 #require 'ruby-debug'
+
+$root = 'fs/'
 
 describe "Integration"  do 
 
+=begin
   it "should be able to persist data with a different Document system" do
 
     persister = Persister.new
@@ -72,6 +76,21 @@ describe "Integration"  do
     f.flush()}
 
    
+  end
+=end 
+
+  it "should be able to watch for new files beeing created" do
+
+    data = nil
+    title = '123456.jpg'
+    File.open('inode-detail.jpg', 'rb') { |f| data = f.read()}
+    File.open('fs/' + title, 'wb') {|f| f.write(data) }
+
+    persister = Persister.new
+    fs = FileSystem.new persister, :isnew => true
+    w = Watcher.new fs
+    
+    sleep(20)
   end
 end
 

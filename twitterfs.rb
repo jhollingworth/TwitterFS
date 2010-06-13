@@ -1,5 +1,5 @@
 require 'base64'
-#require 'ruby-debug'
+require 'ruby-debug'
 require 'pathname'
 
 class Directory
@@ -17,8 +17,6 @@ class Directory
   def add_document(document)
     @documents << document  
     @uid = nil
-
-
   end
   
   def add_directory(dir)
@@ -59,6 +57,7 @@ class Directory
 
     if false == @uid.nil? and false == @loaded
       
+      debugger
       data = @fs.load(@uid).split(/;/)
 
       @title = data[0]
@@ -71,6 +70,17 @@ class Directory
   def to_s()    
     "#{@title};#{@directories.collect {|d| d.uid.to_s + ','}.to_s.chop};#{@documents.collect {|f| f.uid.to_s + ','}.to_s.chop}"
   end 
+  
+  def flush(root)
+    path = File.directory? root.nil? $root : root + '/' + title
+    
+    if false == File.directory? path
+      Dir.mkdir(path)
+    end      
+    
+    @documents.each { |d| d.flush(path) }
+    @directories.each { |d| d.flush(path) }
+  end
 end 
 
 class Document
@@ -117,6 +127,7 @@ class Document
   def load()
     if false == @uid.nil? and false == @loaded
 
+      debugger
       # Google this to find out the better way
       # Tut tut hollingworth...
       rawdata =  @fs.load(@uid)
@@ -125,6 +136,9 @@ class Document
       @title = data[0]
       @data = rawdata[(@title.length+1)..rawdata.length]
     end
+  end
+  
+  def flush(path)
   end
   
   def to_s()
