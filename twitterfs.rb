@@ -17,6 +17,8 @@ class Directory
   def add_document(document)
     @documents << document  
     @uid = nil
+
+
   end
   
   def add_directory(dir)
@@ -84,8 +86,8 @@ class Document
   end
   
   def Document.from_file_path(fs, document_path)
-    data = ''
-    File.open(document_path, 'r').each {|l| data += l}
+    data = nil
+    File.open(document_path, 'rb') {|f| data = f.read()}
     Document.new(fs, 
       :title => Pathname.new(document_path).basename,
       :data => data
@@ -114,10 +116,14 @@ class Document
   
   def load()
     if false == @uid.nil? and false == @loaded
-      data = @fs.load(@uid).split(/;/)
+
+      # Google this to find out the better way
+      # Tut tut hollingworth...
+      rawdata =  @fs.load(@uid)
+      data = rawdata.split(/;/)
       
       @title = data[0]
-      @data = data[1]
+      @data = rawdata[(@title.length+1)..rawdata.length]
     end
   end
   

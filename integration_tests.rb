@@ -2,6 +2,7 @@ require 'twitterfs'
 require 'rubygems'
 require 'json'
 require 'twitterfspersistance'
+require 'Base64'
 #require 'ruby-debug'
 
 describe "Integration"  do 
@@ -24,7 +25,6 @@ describe "Integration"  do
     
     root.add_directory(dir)
     
-    
     fs.flush()
     
     fs2 = FileSystem.new persister
@@ -35,34 +35,43 @@ describe "Integration"  do
     fs2.root.directories[0].directories.length == 0
   end
   
-  it "should be able to persist an image of an inode" do 
-    
+  it "should be able to persist an image of an inode" do
+  
     persister = Persister.new 
     
     fs = FileSystem.new persister, :isnew => true
     file = Document.from_file_path(fs, 'inode-detail.jpg')
-    
+
+    original = nil
+    File.open('inode-detail.jpg', 'rb') { |f| original = f.read()}
+      
     fs.root.add_document(file)
     fs.flush()
-    
     
     fs = FileSystem.new persister
     
     doc = fs.root.documents[0]
     
     doc.title.should == 'inode-detail.jpg'
-    File.open('test.jpg', 'w') {|f| f.puts doc.data }
+    for i in 0..original.length
+      doc.data[i].should == original[i]
+    end
+    
+
+    File.open('test.jpg', 'wb') {|f| f.write(doc.data) }
+
   end
   
   it "this isn't even a real test" do
-  
-    data = ''
-    File.open('inode-detail.jpg', 'r').each {|l| data += l}
-    
-    debugger
-    
-    File.open('test1.jpg', 'w') {|f| f.puts data }
-    
+
+    data = nil
+    File.open('inode-detail.jpg', 'rb') { |f| data = f.read()}
+
+
+    File.open('test1.jpg', 'wb') {|f| f.write(data)
+    f.flush()}
+
+   
   end
 end
 

@@ -1,6 +1,7 @@
 require 'twitterfs'
 require 'twitterfspersistance'
 
+
 class MockPersisterForInitialize
     def initialize
       

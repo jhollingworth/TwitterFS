@@ -1,5 +1,7 @@
 require 'rubygems'
 require 'json'
+require 'Base64'
+require 'Log'
 
 class FileSystem
 
@@ -38,18 +40,27 @@ class FileSystem
       end
     end while tweet != nil 
 
-    completeddata
+    # We need to decode everything cos we encode everything
+    loaded = Base64.decode64(completeddata)
+
+    Log.write("Loaded " + loaded.length.to_s + " bytes")
+    loaded
+
   end 
   
   def write(data)
-      
-    # Writes string to nodes
-    arraycount = (data.length / @tweet_size).to_i
+
+    Log.write("Writing " + data.length.to_s + " bytes")
+
+    # We Base64 encode anything coming in so we can deal with anything
+    encoded = Base64.encode64(data)
+   
+    arraycount = (encoded.length / @tweet_size).to_i
     i = arraycount;
     last_uid = ""    
 
     begin
-        substr =  data[(i * @tweet_size)..((i+1) * @tweet_size-1)]
+        substr =  encoded[(i * @tweet_size)..((i+1) * @tweet_size-1)]
         last_uid = @persister.add_tweet(last_uid,
                                 { "d" => substr }.to_json ).to_s
         
